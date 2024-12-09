@@ -7,7 +7,7 @@ const Nav = ({userName}) => {
     return <nav>
         {/* <h1>{userName}</h1> */}
         <NavLink to="/" aria-label="Home">
-             <img src={logomark} alt="logomark" height={30} />
+             <img src={logomark} alt="logomark" height={40  } />
              <span>Dashboard</span>
         </NavLink>
        {
