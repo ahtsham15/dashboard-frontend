@@ -1,21 +1,22 @@
 import React, { StrictMode } from "react";
 import { fetchData } from "../helpers";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Intro from "../components/Intro";
 import { toast } from "react-toastify";
 import { PlusIcon } from "@heroicons/react/24/solid";
 import AddIncomeForm from "../components/AddIncomeForm";
 import { createIncome } from "../helpers";
-// import { income } from "../data/income";
 import AddExpenseForm from "../components/AddExpenseForm";
 import { createExpense } from "../helpers";
 import BudgetItem from "../components/BudgetItem";
+import Table from "../components/Table";
 
 
 export function dashboardLoader() {
   const userName = fetchData("userName");
   const income = fetchData("income")
-  return { userName,income };
+  const expenses = fetchData("expenses")
+  return { userName,income, expenses };
 }
 
 export async function dashboardAction({request}){
@@ -62,11 +63,10 @@ export async function dashboardAction({request}){
             return toast.error("Expense creation Field")
         }
     }
-   
 }
 
 const Dashboard = () => {
-  const { userName,income } = useLoaderData();
+  const { userName,income, expenses } = useLoaderData();
   return (
     <div>
       {userName ? (<div className="dashboard">
@@ -87,6 +87,21 @@ const Dashboard = () => {
                             ))
                         }
                     </div>
+                    {
+                        expenses && expenses.length > 0 && (
+                            <div className="grid-md">
+                                <h2>Recent Expenses</h2>
+                                <Table expenses={expenses.sort((a,b) => b.createdAt - a.createdAt).slice(0,8)}/>
+                                    {
+                                        expenses.length > 8 && (
+                                            <Link to="expenses" className="btn btn--dark">
+                                                View all expenses
+                                            </Link>
+                                        )
+                                    }
+                            </div>
+                        )
+                    }
                 </div>) : (
                     <div className="grid-sm">
                         <p>Perosnal Income is the secret to financial freedom.</p>

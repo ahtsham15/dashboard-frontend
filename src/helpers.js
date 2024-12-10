@@ -31,6 +31,10 @@ export const createExpense = async({name,amount,description,budgetId}) => {
     // return localStorage.setItem("expenses",JSON.stringify([...existingExpenses,newItem]))
 }
 
+export const formatDateToLocalString = (epoch) =>{
+    return new Date(epoch).toLocaleDateString();
+}
+
 export const deleteItem = ({key}) => {
   return localStorage.removeItem(key);
 }
