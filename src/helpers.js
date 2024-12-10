@@ -16,13 +16,14 @@ export const createIncome = async({name,amount,description,source}) =>{
     return localStorage.setItem("income",JSON.stringify([...existingIncomes,newItem]))
 }
 
-export const createExpense = async({name,amount,description}) => {
+export const createExpense = async({name,amount,description,budgetId}) => {
     const newItem = {
         id: crypto.randomUUID(),
         name: name,
         amount: +amount,
         description: description,
-        date: new Date().toISOString()
+        date: new Date().toISOString(),
+        budgetId: budgetId
     }
     const existingExpenses = fetchData("expenses") ?? [];
     return localStorage.setItem("expenses",JSON.stringify([...existingExpenses,newItem]))
@@ -32,4 +33,28 @@ export const createExpense = async({name,amount,description}) => {
 
 export const deleteItem = ({key}) => {
   return localStorage.removeItem(key);
+}
+
+export const calculateSpentByBudget = (budgetId) => {
+    const expenses = fetchData("expenses") ?? [];
+    const budgetSpent = expenses.reduce((acc,expenses) => {
+        if(expenses.budgetId != budgetId) return acc;
+        return acc += expenses.amount;
+    },0)
+    return budgetSpent;
+}
+
+export const formatPercentage = (amount) => {
+    return amount.toLocaleString(undefined, {
+        style: "percent",
+        minimumFractionDigits: 0,
+
+    })
+}
+
+export const formatCurrency = (amount) => {
+    return amount.toLocaleString(undefined,{
+        style: "currency",
+        currency: "USD",
+    })
 }

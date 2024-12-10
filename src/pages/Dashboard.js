@@ -55,6 +55,7 @@ export async function dashboardAction({request}){
                 name : values.newExpense,
                 amount : values.newExpenseAmount,
                 description : values.newExpenseDescription,
+                budgetId : values.newExpenseBudget
             })
             return toast.success(`Expense ${values.newExpense} created successfully`)
         } catch (error) {
