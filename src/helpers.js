@@ -35,9 +35,9 @@ export const formatDateToLocalString = (epoch) =>{
     return new Date(epoch).toLocaleDateString();
 }
 
-export const deleteItem = ({key}) => {
-  return localStorage.removeItem(key);
-}
+// export const deleteItem = ({key}) => {
+//   return localStorage.removeItem(key);
+// }
 
 export const calculateSpentByBudget = (budgetId) => {
     const expenses = fetchData("expenses") ?? [];
@@ -54,6 +54,20 @@ export const formatPercentage = (amount) => {
         minimumFractionDigits: 0,
 
     })
+}
+
+export const getAllMatchingItems = ({category,key,value}) =>{
+    const data = fetchData(category) ?? [];
+    return data.filter((item) => item[key] === value)
+}
+
+export const deleteItem = ({key,id}) =>{
+    const existingItems = fetchData(key) ?? [];
+    if(id){
+        const newData = existingItems.filter((item) => item.id !==id);
+        return localStorage.setItem(key,JSON.stringify(newData))
+    }
+    return localStorage.removeItem(key);
 }
 
 export const formatCurrency = (amount) => {

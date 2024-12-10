@@ -1,7 +1,7 @@
 import { fetchData } from "../helpers";
 import ExpenseItem from "./ExpenseItem";
 
-const Table = ({expenses}) => {
+const Table = ({expenses, showBudget=true}) => {
     // No need to fetch expenses since they're passed as props
     return (
         <div className="table">
@@ -19,7 +19,7 @@ const Table = ({expenses}) => {
                     {
                         expenses.map((expense)=>(
                             <tr key={expense.id}>
-                                <ExpenseItem expense={expense}/>
+                                <ExpenseItem expense={expense} showBudget={showBudget}/>
                             </tr>
                         ))
                     }

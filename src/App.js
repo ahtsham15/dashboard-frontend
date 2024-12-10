@@ -7,8 +7,8 @@ import Main, { mainLoader } from "./layouts/Main";
 import { logoutAction } from "./actions/logout";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import ExpensesPage, { expensesLoader } from "./pages/ExpensesPage";
-
+import ExpensesPage, { deleteExpenseAction, expensesLoader } from "./pages/ExpensesPage";
+import BudgetPage, { budgetAction, budgetLoader } from "./pages/BudgetPage";
 
 const router = createBrowserRouter([
   {
@@ -25,9 +25,18 @@ const router = createBrowserRouter([
         errorElement: <Error />
       },
       {
+        path: "budget/:id",
+        element: <BudgetPage />,
+        loader: budgetLoader,
+        action: budgetAction,
+        errorElement: <Error />
+      },
+      {
         path: "expenses",
         element: <ExpensesPage />,
         loader: expensesLoader,
+        action: deleteExpenseAction,
+        errorElement: <Error />
       },
       {
         path: "logout",
@@ -41,16 +50,6 @@ const router = createBrowserRouter([
       // }
     ]
   },
-  // {
-  //   path: "/",
-  //   element: <Dashboard />,
-  //   loader: dashboardLoader,
-  //   errorElement: <Error />
-  // },
-  // {
-  //   path:"*",
-  //   element: <Error />
-  // }
 ]);
 
 function App() {
@@ -63,22 +62,3 @@ function App() {
 }
 
 export default App;
-
-{
-  /* <div className="App">
-<header className="App-header">
-  <img src={logo} className="App-logo" alt="logo" />
-  <p>
-    Edit <code>src/App.js</code> and save to reload.
-  </p>
-  <a
-    className="App-link"
-    href="https://reactjs.org"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Learn React
-  </a>
-</header>
-</div> */
-}

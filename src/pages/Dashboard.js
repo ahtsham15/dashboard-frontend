@@ -1,5 +1,5 @@
 import React, { StrictMode } from "react";
-import { fetchData } from "../helpers";
+import { deleteItem, fetchData } from "../helpers";
 import { Link, useLoaderData } from "react-router-dom";
 import Intro from "../components/Intro";
 import { toast } from "react-toastify";
@@ -61,6 +61,18 @@ export async function dashboardAction({request}){
             return toast.success(`Expense ${values.newExpense} created successfully`)
         } catch (error) {
             return toast.error("Expense creation Field")
+        }
+    }
+    if(_action === "deleteExpense"){
+        try {
+            deleteItem({
+                key: "expenses",
+                id: values.expenseId    
+            })
+            console.log("values of the object:",values)
+            return toast.success(`Expense deleted successfully`)
+        } catch (error) {
+            return toast.error("Expense deletion Field")
         }
     }
 }
