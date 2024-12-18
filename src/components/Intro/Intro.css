@@ -1,0 +1,39 @@
+.intro {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input {
+    padding: 10px;
+    font-size: 1rem;
+    margin: 5px 0;
+    width: 200px;
+}
+
+button {
+    padding: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.sign-up-btn {
+    margin-left: 10px; /* Adjust space between login form and sign-up button */
+}
+
+.accent {
+    color: #ff6347; /* Example accent color */
+}

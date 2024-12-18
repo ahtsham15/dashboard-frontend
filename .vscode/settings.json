@@ -11,5 +11,7 @@
   "prettier.singleQuote": true,
   "prettier.useTabs": true,
   "prettier.vueIndentScriptAndStyle": true,
-  "prettier.withNodeModules": true
+  "prettier.withNodeModules": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true
 }
