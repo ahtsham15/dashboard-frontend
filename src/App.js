@@ -1,14 +1,15 @@
-import logo from "./logo.svg";
-import "./App.css";
+import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Dashboard, { dashboardAction, dashboardLoader } from "./pages/Dashboard";
 import Error from "./pages/Error";
 import Main, { mainLoader } from "./layouts/Main";
 import { logoutAction } from "./actions/logout";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import ExpensesPage, { deleteExpenseAction, expensesLoader } from "./pages/ExpensesPage";
 import BudgetPage, { budgetAction, budgetLoader } from "./pages/BudgetPage";
+
+import Intro from "./components/Intro/Intro"; // Add Intro import
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,11 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+        element: <Intro />, // Load Intro for the home page
+        errorElement: <Error />
+      },
+      {
+        path: "dashboard",
         element: <Dashboard />,
         loader: dashboardLoader,
         action: dashboardAction,
@@ -40,16 +46,10 @@ const router = createBrowserRouter([
       },
       {
         path: "logout",
-        // element: <p1>logged Out</p1>
         action: logoutAction
       }
-      // {
-      //   path: "about",
-      //   element: <h1>about</h1>,
-      //   errorElement: <Error />
-      // }
     ]
-  },
+  }
 ]);
 
 function App() {

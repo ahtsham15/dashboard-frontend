@@ -1,0 +1,62 @@
+/* IncomeList.css */
+.income-list {
+    padding: 20px;
+    margin: 20px 0;
+  }
+  
+  .income-list h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table th,
+  .table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  .pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .pagination button {
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    background-color: black; /* Black background for the button */
+    color: white; /* White text color */
+    border: none;
+    border-radius: 5px; /* Optional: Add rounded corners */
+    font-size: 16px;
+  }
+  
+  .pagination button:disabled {
+    cursor: not-allowed;
+    background-color: #ccc; /* Light gray for disabled buttons */
+  }
+  
+  .pagination span {
+    margin: 0 10px;
+  }
+  
+  .delete-btn {
+    background: none;
+    border: none;
+    color: red; /* Trash icon color */
+    cursor: pointer;
+  }
+  
+  .delete-btn:hover {
+    color: darkred; /* Change color on hover */
+  }
+  

@@ -3,17 +3,23 @@ export const fetchData = (key) => {
   return JSON.parse(localStorage.getItem(key));
 };
 
-export const createIncome = async({name,amount,description,source}) =>{
+export const createIncome = async({name,amount,source}) =>{
     const newItem = {
         id: crypto.randomUUID(),
         name:name,
         amount: +amount,
         date: new Date().toISOString(),
-        description: description,
         source: source
     }
-    const existingIncomes = fetchData("income") ?? [];
-    return localStorage.setItem("income",JSON.stringify([...existingIncomes,newItem]))
+    // const existingIncomes = fetchData("income") ?? [];
+    const existingIncomes = fetchData("income");
+
+    // Ensure the fetched data is converted to an array
+    const incomesArray = Array.isArray(existingIncomes) ? existingIncomes : [];
+
+    // Add new income item
+    const updatedIncomes = [...incomesArray, newItem];
+    return localStorage.setItem("income",JSON.stringify(updatedIncomes))
 }
 
 export const createExpense = async({name,amount,description,budgetId}) => {

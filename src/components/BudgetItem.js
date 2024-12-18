@@ -4,7 +4,8 @@ import { calculateSpentByBudget, formatCurrency, formatPercentage } from "../hel
 const BudgetItem = ({budget}) => {
     // const {name,amount,description,date} = budget;
     const {id,name,amount,description,date} = budget;
-    const spent = calculateSpentByBudget(id);
+    // const spent = calculateSpentByBudget(id);
+    const spent = 1000
     return (
         <div className="budget">
             <div className="progress-text">
